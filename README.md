@@ -21,7 +21,7 @@ heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-mult
 
 Then, create a `.buildpacks` file inside your app:
 ```
-https://github.com/masonforest/heroku-buildpack-imagemagick-cedar-14
+https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
 https://github.com/heroku/heroku-buildpack-nodejs
 ```
 
