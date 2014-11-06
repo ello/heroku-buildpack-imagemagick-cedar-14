@@ -1,9 +1,0 @@
-PACKAGES=(
-    "http://launchpadlibrarian.net/144550460/libjpeg8_8c-2ubuntu8_amd64.deb"
-    "http://launchpadlibrarian.net/187081811/libgomp1_4.9.1-16ubuntu6_amd64.deb"
-    "http://launchpadlibrarian.net/188623102/libmagickcore-6.q16-2_6.8.9.9-2_amd64.deb"
-    "http://launchpadlibrarian.net/188623105/libmagickwand-6.q16-2_6.8.9.9-2_amd64.deb"
-    "http://launchpadlibrarian.net/188623101/imagemagick-6.q16_6.8.9.9-2_amd64.deb"
-    "http://launchpadlibrarian.net/188623075/imagemagick-common_6.8.9.9-2_all.deb"
-    "http://launchpadlibrarian.net/188623094/imagemagick_6.8.9.9-2_amd64.deb"
-)
