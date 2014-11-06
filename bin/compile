@@ -1,0 +1,63 @@
+#! /bin/bash
+
+set -e
+
+source `dirname $0`/../configs.sh
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+SOURCE_LIST=`dirname $0`/../etc/sources.list
+IMAGEMAGICK_VERSION=8:6.8.9.9-2
+BIN_PATH=.apt/usr/bin
+LIB_PATH=.apt/usr/lib/x86_64-linux-gnu/
+MAGICK_CODER_MODULE_PATH=$LIB_PATH/ImageMagick-6.8.9/modules-Q16/coders
+MAGICK_CODER_FILTER_PATH=$LIB_PATH/ImageMagick-6.8.9/modules-Q16/filters
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+arrow() {
+  sed -u 's/^/-----> /'
+}
+
+APT_CACHE_DIR="$CACHE_DIR/apt/cache"
+APT_STATE_DIR="$CACHE_DIR/apt/state"
+
+mkdir -p "$APT_CACHE_DIR/archives/partial"
+mkdir -p "$APT_STATE_DIR/lists/partial"
+
+APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR -o Dir::Etc::SourceList=$SOURCE_LIST"
+
+cat $SOURCE_LIST
+
+apt-get $APT_OPTIONS update | indent
+
+echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | indent
+
+apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION | indent
+
+mkdir -p $BUILD_DIR/.apt
+
+for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+  dpkg -x $DEB $BUILD_DIR/.apt/
+done
+
+echo "Linking binaries" | indent
+
+cd $BUILD_DIR/.apt/usr/bin
+
+for binary in *-im6; do
+  ln -s $binary ${binary%-im6*}
+done
+
+echo "Building runtime environment" | arrow
+mkdir -p $BUILD_DIR/.profile.d
+cat <<EOF >$BUILD_DIR/.profile.d/z_imagemagick.sh
+export PATH="\$HOME/$BIN_PATH:$PATH"
+export LD_LIBRARY_PATH="\$HOME/$LIB_PATH:\$LD_LIBRARY_PATH"
+export MAGICK_CODER_FILTER_PATH="\$HOME/$MAGICK_CODER_FILTER_PATH"
+export MAGICK_CODER_MODULE_PATH="\$HOME/$MAGICK_CODER_MODULE_PATH"
+EOF
+
+
