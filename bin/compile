@@ -52,7 +52,7 @@ done
 echo "Building runtime environment" | arrow
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/z_imagemagick.sh
-export PATH="\$HOME/$BIN_PATH:$PATH"
+export PATH="\$HOME/$BIN_PATH:\$PATH"
 export LD_LIBRARY_PATH="\$HOME/$LIB_PATH:\$LD_LIBRARY_PATH"
 export MAGICK_CODER_FILTER_PATH="\$HOME/$MAGICK_CODER_FILTER_PATH"
 export MAGICK_CODER_MODULE_PATH="\$HOME/$MAGICK_CODER_MODULE_PATH"
