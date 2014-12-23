@@ -41,11 +41,14 @@ done
 
 echo "Linking binaries" | arrow
 
-cd $BUILD_DIR/.apt/usr/bin
+cd $BUILD_DIR/$BIN_PATH
 
 for binary in *-im6; do
   ln -s $binary ${binary%-im6*}
 done
+
+echo "Testing imagemagick installation" | arrow
+$BUILD_DIR/$BIN_PATH/identify -list format | indent
 
 echo "Building runtime environment" | arrow
 mkdir -p $BUILD_DIR/.profile.d
