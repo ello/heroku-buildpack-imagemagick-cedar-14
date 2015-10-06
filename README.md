@@ -16,7 +16,7 @@ This buildpack is built to be used through
 [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi),
 so in your app you need to:
 ```
-heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi
+heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git
 ```
 
 Then, create a `.buildpacks` file inside your app:
