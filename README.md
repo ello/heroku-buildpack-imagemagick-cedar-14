@@ -12,22 +12,22 @@ manually.
 
 ## Usage
 
-This buildpack is built to be used through
-[heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi),
-so in your app you need to:
-```
-heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi
-```
+Heroku now supports using multiple buildpacks for an app - see
+[here](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app)
+for more info.
 
-Then, create a `.buildpacks` file inside your app:
+So in your app you need to do:
+
 ```
+heroku buildpacks:set --index 1
 https://github.com/ello/heroku-buildpack-imagemagick-cedar-14
+
+heroku buildpacks:set --index 2
 https://github.com/heroku/heroku-buildpack-nodejs
 ```
 
-This example was based on the nodejs buildpack, but it can be used with
-any other.
-If it is not working with yours, please report a bug.
+Then deploy your application. This example was based on the nodejs buildpack, but it can be used with
+any other. If it is not working with yours, please report a bug.
 
 ## Thanks
 
