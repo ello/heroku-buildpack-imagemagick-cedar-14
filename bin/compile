@@ -31,7 +31,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
 
-apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION | indent
+apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION libgomp1=4.9.2-10ubuntu13 | indent
 
 mkdir -p $BUILD_DIR/.apt
 
