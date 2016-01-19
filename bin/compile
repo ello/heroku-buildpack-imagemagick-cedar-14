@@ -31,15 +31,8 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
 
-echo "Held packages before"
-dpkg --get-selections | grep hold
-
 apt-get -y install imagemagick-6.q16
 apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION | indent
-
-echo "Held packages after"
-dpkg --get-selections | grep hold
-
 
 mkdir -p $BUILD_DIR/.apt
 
