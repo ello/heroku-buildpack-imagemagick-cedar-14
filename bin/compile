@@ -31,7 +31,7 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
 
-apt-get -y install imagemagick-6.q16
+apt-get $APT_OPTIONS -y install imagemagick-6.q16
 apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION | indent
 
 mkdir -p $BUILD_DIR/.apt
