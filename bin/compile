@@ -29,10 +29,12 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 
 apt-get $APT_OPTIONS update | indent
 
-echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
 
-apt-get $APT_OPTIONS -y -d install libgomp1=4.9.2-10ubuntu13 | indent
-apt-get $APT_OPTIONS -y -d install imagemagick=$IMAGEMAGICK_VERSION imagemagick-6.q16=$IMAGEMAGICK_VERSION libmagickcore-6.q16-2=$IMAGEMAGICK_VERSION libmagickwand-6.q16-2=$IMAGEMAGICK_VERSION | indent
+echo "Installing libgomp1" | arrow
+apt-get $APT_OPTIONS -y -d -f install libgomp1=4.9.2-10ubuntu13 | indent
+
+echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
+apt-get $APT_OPTIONS -y -d -f install imagemagick=$IMAGEMAGICK_VERSION imagemagick-6.q16=$IMAGEMAGICK_VERSION libmagickcore-6.q16-2=$IMAGEMAGICK_VERSION libmagickwand-6.q16-2=$IMAGEMAGICK_VERSION | indent
 
 mkdir -p $BUILD_DIR/.apt
 
