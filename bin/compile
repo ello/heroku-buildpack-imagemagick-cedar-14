@@ -31,21 +31,21 @@ apt-get $APT_OPTIONS update | indent
 
 echo "Installing ImageMagick ${IMAGEMAGICK_VERSION}" | arrow
 
-apt-get $APT_OPTIONS -y -d install imagemagick | indent #=$IMAGEMAGICK_VERSION | indent
+apt-get $APT_OPTIONS -y install imagemagick | indent #=$IMAGEMAGICK_VERSION | indent
 
-mkdir -p $BUILD_DIR/.apt
+# mkdir -p $BUILD_DIR/.apt
 
-for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
-  dpkg -x $DEB $BUILD_DIR/.apt/
-done
+# for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
+#   dpkg -x $DEB $BUILD_DIR/.apt/
+# done
 
-echo "Linking binaries" | arrow
+# echo "Linking binaries" | arrow
 
-cd $BUILD_DIR/$BIN_PATH
+# cd $BUILD_DIR/$BIN_PATH
 
-for binary in *-im6; do
-  ln -s $binary ${binary%-im6*}
-done
+# for binary in *-im6; do
+#   ln -s $binary ${binary%-im6*}
+# done
 
 echo "Testing imagemagick installation" | arrow
 export LD_LIBRARY_PATH="$BUILD_DIR/$LIB_PATH:$LD_LIBRARY_PATH"
