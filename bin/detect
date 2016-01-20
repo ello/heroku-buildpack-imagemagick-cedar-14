@@ -1,4 +1,6 @@
 #! /bin/bash
 
+echo "imagemagick"
 # this buildpack can always be used
 exit 0
+
