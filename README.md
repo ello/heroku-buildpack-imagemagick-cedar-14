@@ -1,6 +1,11 @@
 Heroku Buildpack ImageMagick Cedar 14
 ===========================
 
+# DEPRECATED
+
+We're no longer using this buildpack due to the complexity of maintaining it. We've migrated to https://github.com/ello/heroku-buildpack-imagemagick - you should use that instead!
+
+
 Use the latest version of ImageMagick inside Heroku  _Cedar 14_.
 
 ImageMagick 6.8 [won't be
